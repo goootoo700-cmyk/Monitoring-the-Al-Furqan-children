@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -9,13 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* ============== إعدادات عامة ============== */
         :root {
             --primary-color: #1a6b5a;
             --primary-dark: #145247;
             --primary-light: #e8f5f1;
             --secondary-color: #d4af37;
-            --secondary-light: #f9f3e3;
             --text-color: #333333;
             --text-light: #666666;
             --white: #ffffff;
@@ -24,7 +22,6 @@
             --success-color: #28a745;
             --border-color: #e0e0e0;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
             --border-radius: 12px;
             --transition: all 0.3s ease;
         }
@@ -51,7 +48,6 @@
             padding: 0 20px;
         }
 
-        /* ============== الأزرار ============== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -76,9 +72,8 @@
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, var(--primary-dark), #0e3d35);
-            box-shadow: var(--shadow-hover);
             transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
         .btn-secondary {
@@ -88,8 +83,6 @@
         }
 
         .btn-secondary:hover {
-            background: linear-gradient(135deg, #b8960f, #967a0c);
-            box-shadow: var(--shadow-hover);
             transform: translateY(-2px);
         }
 
@@ -100,8 +93,6 @@
         }
 
         .btn-success:hover {
-            background: linear-gradient(135deg, #128c7e, #0e6b5e);
-            box-shadow: var(--shadow-hover);
             transform: translateY(-2px);
         }
 
@@ -116,7 +107,6 @@
             transform: translateY(-2px);
         }
 
-        /* ============== الهيدر ============== */
         .header {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             padding: 20px 0;
@@ -154,7 +144,6 @@
             color: var(--white);
             font-size: 24px;
             font-weight: 800;
-            letter-spacing: 1px;
         }
 
         .nav-buttons {
@@ -169,7 +158,6 @@
             font-size: 14px;
         }
 
-        /* ============== الأقسام الرئيسية ============== */
         .main-content {
             flex: 1;
             padding: 40px 0;
@@ -185,17 +173,10 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ============== قسم البطل ============== */
         .hero {
             text-align: center;
             padding: 60px 20px;
@@ -211,12 +192,8 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         .hero h2 {
@@ -232,22 +209,12 @@
             margin-bottom: 30px;
         }
 
-        .hero .btn {
-            margin: 10px;
-        }
-
-        /* ============== بطاقات ============== */
         .card {
             background: var(--white);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             padding: 30px;
             margin-bottom: 30px;
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            box-shadow: var(--shadow-hover);
         }
 
         .card-header {
@@ -267,7 +234,6 @@
             font-size: 16px;
         }
 
-        /* ============== النماذج ============== */
         .form-group {
             margin-bottom: 25px;
         }
@@ -276,7 +242,6 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 700;
-            color: var(--text-color);
             font-size: 16px;
         }
 
@@ -294,7 +259,6 @@
             border-radius: 8px;
             transition: var(--transition);
             background: var(--white);
-            color: var(--text-color);
         }
 
         .form-control:focus {
@@ -326,23 +290,14 @@
 
         .error-message.show {
             display: block;
-            animation: shake 0.3s ease;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        /* ============== نموذج من عمودين ============== */
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
 
-        /* ============== شاشة النجاح ============== */
         .success-screen {
             text-align: center;
             padding: 40px 20px;
@@ -355,20 +310,10 @@
         }
 
         @keyframes bounceIn {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            70% {
-                transform: scale(0.9);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .student-code {
@@ -392,7 +337,6 @@
             flex-wrap: wrap;
         }
 
-        /* ============== نافذة التحميل ============== */
         .loading-overlay {
             display: none;
             position: fixed;
@@ -439,13 +383,11 @@
             font-size: 18px;
         }
 
-        /* ============== رسالة تنبيه ============== */
         .alert {
             padding: 15px 20px;
             border-radius: 8px;
             margin: 20px 0;
             font-weight: 600;
-            animation: fadeIn 0.3s ease;
         }
 
         .alert-warning {
@@ -460,19 +402,12 @@
             border: 1px solid #bee5eb;
         }
 
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
         .alert-danger {
             background: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
 
-        /* ============== الفوتر ============== */
         .footer {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: var(--white);
@@ -492,7 +427,6 @@
             color: var(--secondary-color);
         }
 
-        /* ============== التجاوب ============== */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -517,10 +451,6 @@
                 font-size: 28px;
             }
 
-            .hero p {
-                font-size: 18px;
-            }
-
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 0;
@@ -535,33 +465,10 @@
             .btn {
                 min-width: 100%;
                 font-size: 14px;
-                padding: 12px 20px;
             }
 
             .success-actions {
                 flex-direction: column;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            .hero {
-                padding: 40px 15px;
-            }
-
-            .hero-icon {
-                font-size: 60px;
-            }
-
-            .card {
-                padding: 20px;
-            }
-
-            .card-header h3 {
-                font-size: 24px;
             }
         }
     </style>
@@ -580,9 +487,9 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <img src="logo.jpg" alt="دار الفرقان" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="assets/logo.png" alt="دار الفرقان" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div style="display: none; width: 60px; height: 60px; border-radius: 50%; background: var(--secondary-color); align-items: center; justify-content: center; font-size: 24px; color: var(--white); font-weight: 900; border: 3px solid var(--secondary-color);">
-
+                        📖
                     </div>
                     <h1>دار الفرقان</h1>
                 </div>
@@ -628,7 +535,6 @@
                     </div>
 
                     <form id="registrationForm" onsubmit="return false;">
-                        <!-- بيانات الطالب -->
                         <div class="form-group">
                             <label>
                                 اسم الطالب بالكامل
@@ -667,7 +573,6 @@
                             </div>
                         </div>
 
-                        <!-- بيانات المكان -->
                         <div class="form-group">
                             <label>
                                 المنطقة / محل الإقامة
@@ -677,7 +582,6 @@
                             <div class="error-message" id="areaError">الرجاء إدخال المنطقة</div>
                         </div>
 
-                        <!-- بيانات ولي الأمر -->
                         <div class="form-group">
                             <label>
                                 رقم هاتف ولي الأمر / رقم الواتساب
@@ -687,7 +591,6 @@
                             <div class="error-message" id="phoneError">الرجاء إدخال رقم هاتف صحيح (11 رقم)</div>
                         </div>
 
-                        <!-- بيانات المواصلات -->
                         <div class="form-group">
                             <label>
                                 مكان ركوب الطفل
@@ -786,24 +689,21 @@
         let generatedCode = '';
         let studentData = {};
 
-        // رقم الواتساب الإجباري للإرسال (بالصيغة الدولية)
-        const WHATSAPP_NUMBER = '20 10 61255635';
+        // رقم الواتساب الإجباري للإرسال
+        const WHATSAPP_NUMBER = '201061255635'; // 01061255635
 
         // ============== التنقل بين الأقسام ==============
         function showSection(sectionName) {
-            // إخفاء جميع الأقسام
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
                 section.classList.remove('active');
             });
 
-            // إظهار القسم المطلوب
             const targetSection = document.getElementById(sectionName + 'Section');
             if (targetSection) {
                 targetSection.classList.add('active');
             }
 
-            // التمرير إلى الأعلى
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -811,7 +711,6 @@
         function validateForm() {
             let isValid = true;
 
-            // التحقق من اسم الطالب
             const studentName = document.getElementById('studentName').value.trim();
             if (!studentName || studentName.length < 3) {
                 showError('studentName', 'studentNameError', 'الرجاء إدخال اسم الطالب الكامل (3 أحرف على الأقل)');
@@ -820,7 +719,6 @@
                 hideError('studentName', 'studentNameError');
             }
 
-            // التحقق من القسم
             const section = document.getElementById('section').value;
             if (!section) {
                 showError('section', 'sectionError', 'الرجاء اختيار القسم');
@@ -829,7 +727,6 @@
                 hideError('section', 'sectionError');
             }
 
-            // التحقق من الفرع
             const branch = document.getElementById('branch').value;
             if (!branch) {
                 showError('branch', 'branchError', 'الرجاء اختيار الفرع');
@@ -838,7 +735,6 @@
                 hideError('branch', 'branchError');
             }
 
-            // التحقق من المنطقة
             const area = document.getElementById('area').value.trim();
             if (!area) {
                 showError('area', 'areaError', 'الرجاء إدخال المنطقة');
@@ -847,7 +743,6 @@
                 hideError('area', 'areaError');
             }
 
-            // التحقق من رقم الهاتف
             const phone = document.getElementById('parentPhone').value.trim();
             const phoneRegex = /^01[0-9]{9}$/;
             if (!phoneRegex.test(phone)) {
@@ -857,7 +752,6 @@
                 hideError('parentPhone', 'phoneError');
             }
 
-            // التحقق من مكان الركوب
             const pickupPoint = document.getElementById('pickupPoint').value.trim();
             if (!pickupPoint) {
                 showError('pickupPoint', 'pickupError', 'الرجاء تحديد مكان ركوب الطفل');
@@ -869,7 +763,6 @@
             return isValid;
         }
 
-        // ============== إظهار وإخفاء رسائل الخطأ ==============
         function showError(inputId, errorId, message) {
             const input = document.getElementById(inputId);
             const error = document.getElementById(errorId);
@@ -885,7 +778,6 @@
             error.classList.remove('show');
         }
 
-        // ============== توليد كود عشوائي ==============
         function generateRandomCode() {
             let code = '';
             for (let i = 0; i < 6; i++) {
@@ -894,24 +786,18 @@
             return code;
         }
 
-        // ============== إنشاء كود الطالب ==============
         function generateStudentCode() {
-            // التحقق من صحة البيانات أولاً
             if (!validateForm()) {
                 alert('الرجاء تصحيح الأخطاء في النموذج قبل إنشاء الكود');
                 return;
             }
 
-            // إظهار نافذة التحميل
             const loadingOverlay = document.getElementById('loadingOverlay');
             loadingOverlay.classList.add('show');
 
-            // محاكاة إنشاء الكود (تأخير قصير)
             setTimeout(() => {
-                // توليد كود عشوائي
                 generatedCode = generateRandomCode();
 
-                // حفظ بيانات الطالب
                 studentData = {
                     name: document.getElementById('studentName').value.trim(),
                     section: document.getElementById('section').value,
@@ -921,36 +807,28 @@
                     pickupPoint: document.getElementById('pickupPoint').value.trim()
                 };
 
-                // عرض الكود
                 document.getElementById('displayCode').textContent = generatedCode;
 
-                // إخفاء نافذة التحميل
                 loadingOverlay.classList.remove('show');
 
-                // الانتقال إلى شاشة النجاح
                 showSection('success');
 
-                // إرسال تلقائي إلى واتساب بعد إنشاء الكود مباشرة
                 setTimeout(() => {
                     sendToWhatsApp();
                 }, 1000);
 
-                // طباعة البيانات في الكونسول للتحقق
                 console.log('Student Data:', studentData);
                 console.log('Generated Code:', generatedCode);
             }, 1500);
         }
 
-        // ============== نسخ الكود ==============
         function copyCode() {
             const code = document.getElementById('displayCode').textContent;
             
-            // استخدام Clipboard API
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(code).then(() => {
                     alert('✅ تم نسخ الكود بنجاح: ' + code);
                 }).catch(() => {
-                    // طريقة بديلة للنسخ
                     fallbackCopy(code);
                 });
             } else {
@@ -958,7 +836,6 @@
             }
         }
 
-        // ============== طريقة بديلة للنسخ ==============
         function fallbackCopy(text) {
             const textarea = document.createElement('textarea');
             textarea.value = text;
@@ -977,9 +854,7 @@
             document.body.removeChild(textarea);
         }
 
-        // ============== إرسال البيانات إلى واتساب ==============
         function sendToWhatsApp() {
-            // تنظيف البيانات قبل وضعها في الرسالة
             const cleanData = {
                 name: cleanText(studentData.name),
                 section: cleanText(studentData.section),
@@ -989,7 +864,6 @@
                 pickupPoint: cleanText(studentData.pickupPoint)
             };
 
-            // إنشاء رسالة واتساب
             const message = `📋 تسجيل طالب جديد – دار الفرقان\n\n` +
                 `👦 اسم الطالب: ${cleanData.name}\n` +
                 `📚 القسم: ${cleanData.section}\n` +
@@ -1000,85 +874,49 @@
                 `🔐 كود الطالب: ${generatedCode}\n\n` +
                 `يرجى مراجعة البيانات واعتماد تسجيل الطالب.`;
 
-            // ترميز الرسالة للرابط
             const encodedMessage = encodeURIComponent(message);
-
-            // إنشاء رابط واتساب
             const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 
-            // فتح واتساب في نافذة جديدة
             window.open(whatsappUrl, '_blank');
 
-            // تسجيل العملية في الكونسول
             console.log('WhatsApp message prepared:', message);
         }
 
-        // ============== تنظيف النصوص ==============
         function cleanText(text) {
             if (!text) return '';
-            // إزالة المسافات الزائدة وتحويل الأحرف الخاصة
             return text.trim().replace(/[<>]/g, '');
         }
 
-        // ============== إعادة تعيين النموذج ==============
         function resetForm() {
-            // إعادة تعيين الحقول
             document.getElementById('registrationForm').reset();
             
-            // إزالة رسائل الخطأ
             const errors = document.querySelectorAll('.error-message');
             errors.forEach(error => error.classList.remove('show'));
             
             const inputs = document.querySelectorAll('.form-control');
             inputs.forEach(input => input.classList.remove('error'));
 
-            // إعادة تعيين البيانات
             generatedCode = '';
             studentData = {};
 
-            // العودة إلى صفحة التسجيل
             showSection('registration');
         }
 
-        // ============== متابعة الطالب ==============
         function followUpStudent() {
             const code = document.getElementById('followUpCode').value.trim();
             
-            // التحقق من صحة الكود
             if (!/^[0-9]{6}$/.test(code)) {
                 document.getElementById('followUpCode').classList.add('error');
                 document.getElementById('followUpError').classList.add('show');
                 return;
             }
 
-            // إزالة رسالة الخطأ
             document.getElementById('followUpCode').classList.remove('error');
             document.getElementById('followUpError').classList.remove('show');
 
-            // عرض رسالة أن الخدمة غير متاحة حاليًا
             alert('⚠️ عذرًا، خدمة متابعة الطالب غير متاحة حاليًا\n\nالخدمة قيد التطوير وستتوفر قريبًا بإذن الله\n\nشكرًا لتفهمكم');
         }
 
-        // ============== تحميل بيانات الطلاب من JSON (للمستقبل) ==============
-        async function loadStudentsData() {
-            try {
-                const response = await fetch('data/students.json');
-                const data = await response.json();
-                return data.students;
-            } catch (error) {
-                console.error('Error loading students data:', error);
-                return [];
-            }
-        }
-
-        // ============== البحث عن طالب بالكود (للمستقبل) ==============
-        async function findStudentByCode(code) {
-            const students = await loadStudentsData();
-            return students.find(student => student.code === code);
-        }
-
-        // ============== التحقق التلقائي من المدخلات ==============
-        // إزالة رسالة الخطأ عند الكتابة في الحقل
         document.addEventListener('input', function(e) {
             if (e.target.classList.contains('form-control')) {
                 const inputId = e.target.id;
@@ -1092,11 +930,9 @@
             }
         });
 
-        // ============== منع إرسال النموذج بزر Enter ==============
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
                 e.preventDefault();
-                // الانتقال إلى الحقل التالي أو إنشاء الكود
                 const form = document.getElementById('registrationForm');
                 const inputs = Array.from(form.querySelectorAll('input, select'));
                 const currentIndex = inputs.indexOf(e.target);
@@ -1109,10 +945,9 @@
             }
         });
 
-        // ============== تهيئة الصفحة ==============
         console.log('📖 دار الفرقان لتعليم القرآن الكريم والحضانة');
         console.log('🏢 نظام تسجيل الطلاب - الإصدار 1.0');
-        console.log('📱 رقم الواتساب للإرسال: ' + WHATSAPP_NUMBER);
+        console.log('📱 رقم الواتساب للإرسال: 01061255635');
         console.log('👨‍💻 Design & Development by Abdul Rahman Adel Al-Muqaddam');
     </script>
 </body>
