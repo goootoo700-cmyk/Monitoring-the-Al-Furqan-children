@@ -1,954 +1,1210 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دار الفرقان لتعليم القرآن الكريم والحضانة</title>
-    
-    <!-- Google Fonts - Cairo -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-color: #1a6b5a;
-            --primary-dark: #145247;
-            --primary-light: #e8f5f1;
-            --secondary-color: #d4af37;
-            --text-color: #333333;
-            --text-light: #666666;
-            --white: #ffffff;
-            --bg-light: #f5f8f7;
-            --error-color: #dc3545;
-            --success-color: #28a745;
-            --border-color: #e0e0e0;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            --border-radius: 12px;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-color);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 28px;
-            font-size: 16px;
-            font-weight: 700;
-            font-family: 'Cairo', sans-serif;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            gap: 10px;
-            min-width: 180px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(26, 107, 90, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(135deg, var(--secondary-color), #b8960f);
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, #25d366, #128c7e);
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-success:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            padding: 20px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--secondary-color);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: var(--white);
-        }
-
-        .logo h1 {
-            color: var(--white);
-            font-size: 24px;
-            font-weight: 800;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .nav-buttons .btn {
-            min-width: 140px;
-            padding: 12px 20px;
-            font-size: 14px;
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 40px 0;
-        }
-
-        .section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, var(--primary-light), var(--white));
-            border-radius: 20px;
-            margin-bottom: 40px;
-        }
-
-        .hero-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .hero h2 {
-            font-size: 36px;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-weight: 900;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: var(--text-light);
-            margin-bottom: 30px;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-
-        .card-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .card-header h3 {
-            font-size: 28px;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-
-        .card-header p {
-            color: var(--text-light);
-            font-size: 16px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .form-group label .required {
-            color: var(--error-color);
-            margin-right: 5px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 14px 16px;
-            font-size: 16px;
-            font-family: 'Cairo', sans-serif;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            transition: var(--transition);
-            background: var(--white);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(26, 107, 90, 0.1);
-        }
-
-        .form-control.error {
-            border-color: var(--error-color);
-            background: #fff5f5;
-        }
-
-        select.form-control {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: left 15px center;
-            padding-left: 40px;
-        }
-
-        .error-message {
-            color: var(--error-color);
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .success-screen {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .success-icon {
-            font-size: 100px;
-            margin-bottom: 20px;
-            animation: bounceIn 0.5s ease;
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1.2); }
-            70% { transform: scale(0.9); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .student-code {
-            font-size: 48px;
-            font-weight: 900;
-            color: var(--primary-color);
-            background: var(--primary-light);
-            padding: 20px 40px;
-            border-radius: 15px;
-            display: inline-block;
-            margin: 20px 0;
-            letter-spacing: 10px;
-            border: 3px dashed var(--primary-color);
-        }
-
-        .success-actions {
-            margin-top: 30px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .loading-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .loading-overlay.show {
-            display: flex;
-        }
-
-        .loading-spinner {
-            text-align: center;
-            background: var(--white);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid var(--primary-light);
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-spinner p {
-            font-weight: 700;
-            color: var(--primary-color);
-            font-size: 18px;
-        }
-
-        .alert {
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-weight: 600;
-        }
-
-        .alert-warning {
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
-        }
-
-        .alert-info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-
-        .alert-danger {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .footer {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: var(--white);
-            text-align: center;
-            padding: 20px;
-            margin-top: auto;
-        }
-
-        .footer p {
-            margin: 5px 0;
-            font-size: 14px;
-        }
-
-        .footer .developer {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--secondary-color);
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .logo {
-                justify-content: center;
-            }
-
-            .nav-buttons {
-                justify-content: center;
-                width: 100%;
-            }
-
-            .nav-buttons .btn {
-                flex: 1;
-                min-width: 120px;
-            }
-
-            .hero h2 {
-                font-size: 28px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            .student-code {
-                font-size: 32px;
-                letter-spacing: 5px;
-                padding: 15px 20px;
-            }
-
-            .btn {
-                min-width: 100%;
-                font-size: 14px;
-            }
-
-            .success-actions {
-                flex-direction: column;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متابعة الطالب | دار الفرقان</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Amiri+Quran&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================
+   RESET & BASE
+   ========================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #0d7377;
+    --primary-light: #14a0a8;
+    --primary-dark: #095355;
+    --primary-bg: #eaf7f8;
+    --primary-bg-soft: #f3fafb;
+
+    --gold: #c9a961;
+    --gold-light: #e0c98a;
+    --gold-dark: #a88a4a;
+    --gold-bg: #faf6ed;
+
+    --success: #10b981;
+    --danger: #ef4444;
+
+    --text-primary: #1a2b32;
+    --text-secondary: #4a5b63;
+    --text-tertiary: #8a9aa1;
+
+    --bg-body: #f6f9fa;
+    --bg-surface: #ffffff;
+
+    --border: #e5ecef;
+    --border-strong: #d0dbdf;
+
+    --shadow-sm: 0 2px 8px rgba(13, 115, 119, 0.06);
+    --shadow-md: 0 4px 16px rgba(13, 115, 119, 0.08);
+    --shadow-lg: 0 8px 28px rgba(13, 115, 119, 0.10);
+    --shadow-xl: 0 16px 48px rgba(13, 115, 119, 0.14);
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+    --radius-xl: 28px;
+    --radius-full: 9999px;
+
+    --t: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: 'Cairo', -apple-system, sans-serif;
+    background: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: -200px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(13, 115, 119, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -200px;
+    left: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(201, 169, 97, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+.page-header {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    position: relative;
+    z-index: 10;
+    box-shadow: var(--shadow-sm);
+}
+
+.header-inner {
+    width: min(94%, 1100px);
+    margin-inline: auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-box {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(13, 115, 119, 0.25);
+}
+
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+
+.brand-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.brand-sub {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    font-weight: 500;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: var(--radius-full);
+    background: var(--primary-bg);
+    color: var(--primary-dark);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all var(--t);
+    border: 1px solid transparent;
+}
+
+.back-link:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(13, 115, 119, 0.3);
+}
+
+/* ==========================================
+   MAIN
+   ========================================== */
+main {
+    flex: 1;
+    width: min(94%, 900px);
+    margin-inline: auto;
+    padding: 2.5rem 1rem 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title-block {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold-bg);
+    color: var(--gold-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.78rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(201, 169, 97, 0.3);
+}
+
+.hero-title {
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.7rem;
+    letter-spacing: -0.3px;
+}
+
+.hero-title .highlight {
+    color: var(--primary);
+    position: relative;
+    display: inline-block;
+}
+
+.hero-title .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    right: 0;
+    width: 100%;
+    height: 7px;
+    background: var(--gold-light);
+    opacity: 0.5;
+    border-radius: 4px;
+    z-index: -1;
+}
+
+.hero-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* ==========================================
+   SEARCH CARD
+   ========================================== */
+.search-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.search-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+}
+
+.search-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.search-label i { color: var(--primary); }
+
+.search-input-group {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+}
+
+.search-input-group input {
+    flex: 1 1 240px;
+    padding: 0.95rem 1.2rem;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border-strong);
+    background: var(--bg-body);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-align: center;
+    transition: all var(--t);
+    direction: ltr;
+}
+
+.search-input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--bg-surface);
+    box-shadow: 0 0 0 4px rgba(13, 115, 119, 0.1);
+}
+
+.search-input-group input::placeholder {
+    color: var(--text-tertiary);
+    letter-spacing: 0;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.search-btn {
+    flex: 0 0 auto;
+    min-width: 140px;
+    padding: 0.95rem 1.8rem;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    border: none;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all var(--t);
+    box-shadow: 0 4px 12px rgba(13, 115, 119, 0.3);
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(13, 115, 119, 0.4);
+}
+
+.search-btn:active { transform: translateY(0); }
+
+.search-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Message */
+.msg {
+    margin-top: 1rem;
+    padding: 0.9rem 1.2rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: none;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.msg.show { display: flex; }
+
+.msg-error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.msg i { font-size: 1.1rem; flex-shrink: 0; }
+
+/* ==========================================
+   STUDENT CARD
+   ========================================== */
+.student-card {
+    display: none;
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border);
+    animation: cardIn 0.5s ease;
+}
+
+.student-card.show { display: block; }
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.card-header-bar {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header-bar::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.card-header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-weight: 800;
+    font-size: 1.05rem;
+    position: relative;
+    z-index: 1;
+}
+
+.card-header-title i {
+    background: rgba(255,255,255,0.2);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.card-status {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(6px);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(255,255,255,0.25);
+}
+
+.card-status .dot {
+    width: 8px;
+    height: 8px;
+    background: #86efac;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(134, 239, 172, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.card-body {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 0;
+}
+
+/* Photo */
+.photo-section {
+    padding: 2rem;
+    background: linear-gradient(180deg, var(--primary-bg-soft) 0%, var(--bg-surface) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-left: 1px solid var(--border);
+}
+
+.photo-frame {
+    position: relative;
+    width: 100%;
+    max-width: 220px;
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 5px solid var(--bg-surface);
+    background: var(--primary-bg);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.photo-frame:hover img { transform: scale(1.05); }
+
+.photo-frame .placeholder-icon {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: var(--primary);
+    background: var(--primary-bg);
+}
+
+.photo-badge {
+    position: absolute;
+    bottom: -8px;
+    right: 50%;
+    transform: translateX(50%);
+    background: var(--gold);
+    color: white;
+    padding: 0.35rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 2px solid white;
+    white-space: nowrap;
+}
+
+.photo-caption {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
+.photo-caption i {
+    color: var(--gold);
+    margin-left: 0.3rem;
+}
+
+/* Info */
+.info-section {
+    padding: 2rem;
+}
+
+.student-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+}
+
+.student-code {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--primary-bg);
+    color: var(--primary-dark);
+    padding: 0.3rem 0.9rem;
+    border-radius: var(--radius-full);
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    gap: 0.8rem;
+    padding: 1rem;
+    background: var(--bg-body);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    transition: all var(--t);
+}
+
+.info-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.info-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.info-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    background: var(--primary-bg);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+
+.info-icon.gold {
+    background: var(--gold-bg);
+    color: var(--gold-dark);
+}
+
+.info-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.info-label {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.info-value {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+.info-value.evaluation {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+}
+
+.eval-excellent { background: #d1fae5; color: #065f46; }
+.eval-verygood { background: #dbeafe; color: #1e40af; }
+.eval-good { background: #fef3c7; color: #92400e; }
+.eval-acceptable { background: #fee2e2; color: #991b1b; }
+
+/* Phone (clickable) */
+.phone-link {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 700;
+    direction: ltr;
+    display: inline-block;
+    transition: color var(--t);
+}
+
+.phone-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+/* Empty state */
+.empty-state {
+    display: none;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    border: 2px dashed var(--border-strong);
+}
+
+.empty-state.show { display: block; animation: cardIn 0.4s ease; }
+
+.empty-state i {
+    font-size: 3rem;
+    color: var(--text-tertiary);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.empty-state h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Loading */
+.loading-state {
+    display: none;
+    text-align: center;
+    padding: 2.5rem 2rem;
+}
+
+.loading-state.show { display: block; }
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--primary-bg);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-state p {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.92rem;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.site-footer {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.site-footer p {
+    color: var(--text-tertiary);
+    font-size: 0.82rem;
+    margin-bottom: 0.3rem;
+}
+
+.site-footer .credit {
+    color: var(--gold-dark);
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+    .card-body {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-section {
+        border-left: none;
+        border-bottom: 1px solid var(--border);
+        padding: 1.8rem 1.5rem;
+    }
+
+    .photo-frame { max-width: 180px; }
+
+    .info-section { padding: 1.5rem; }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-card { padding: 1.5rem; }
+
+    .search-btn {
+        flex: 1 1 100%;
+    }
+
+    .card-header-bar { padding: 1rem 1.3rem; }
+    .card-header-title { font-size: 0.95rem; }
+
+    .student-name { font-size: 1.25rem; }
+
+    main { padding: 1.5rem 1rem 3rem; }
+}
+
+@media (max-width: 480px) {
+    .brand-name { font-size: 0.98rem; }
+    .brand-sub { font-size: 0.68rem; }
+    .back-link { font-size: 0.78rem; padding: 0.5rem 0.9rem; }
+
+    .hero-title { font-size: 1.4rem; }
+
+    .search-input-group input {
+        font-size: 1.1rem;
+        padding: 0.85rem 1rem;
+    }
+
+    .info-value { font-size: 0.9rem; }
+}
+</style>
 </head>
 <body>
-    <!-- نافذة التحميل -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner">
-            <div class="spinner"></div>
-            <p>جاري إنشاء الكود...</p>
+
+<!-- ==================== HEADER ==================== -->
+<header class="page-header">
+    <div class="header-inner">
+        <a href="https://goootoo700-cmyk.github.io/Monitoring-the-Al-Furqan-children/" class="brand">
+            <div class="logo-box">
+                <i class="fas fa-quran"></i>
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">دار الفرقان</span>
+                <span class="brand-sub">لتعليم القرآن الكريم</span>
+            </div>
+        </a>
+        <a href=" https://goootoo700-cmyk.github.io/Forqan-Kids.Com/" class="back-link">
+            <i class="fas fa-arrow-right"></i>
+            العودة للرئيسية
+        </a>
+    </div>
+</header>
+
+<!-- ==================== MAIN ==================== -->
+<main>
+
+    <!-- Title -->
+    <div class="hero-title-block">
+        <span class="hero-badge">
+            <i class="fas fa-graduation-cap"></i>
+            متابعة الطالب
+        </span>
+        <h1 class="hero-title">
+            اطّلع على بيانات
+            <span class="highlight">طفلك</span>
+        </h1>
+        <p class="hero-desc">
+            أدخل كود الطالب المكوّن من 6 أرقام لعرض بياناته التعليمية
+        </p>
+    </div>
+
+    <!-- Search -->
+    <div class="search-card">
+        <label class="search-label" for="studentCode">
+            <i class="fas fa-key"></i>
+            كود الطالب
+        </label>
+        <div class="search-input-group">
+            <input
+                type="text"
+                id="studentCode"
+                placeholder="مثال: 123456"
+                maxlength="6"
+                inputmode="numeric"
+                autocomplete="off"
+            >
+            <button class="search-btn" id="searchBtn" type="button">
+                <i class="fas fa-search"></i>
+                <span>استعلام</span>
+            </button>
+        </div>
+        <div class="msg msg-error" id="msgError">
+            <i class="fas fa-circle-exclamation"></i>
+            <span id="msgErrorText"></span>
         </div>
     </div>
 
-    <!-- الهيدر -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">
-                    <img src="assets/logo.png" alt="دار الفرقان" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div style="display: none; width: 60px; height: 60px; border-radius: 50%; background: var(--secondary-color); align-items: center; justify-content: center; font-size: 24px; color: var(--white); font-weight: 900; border: 3px solid var(--secondary-color);">
-                        📖
-                    </div>
-                    <h1>دار الفرقان</h1>
-                </div>
-                <div class="nav-buttons">
-                    <button class="btn btn-primary" onclick="showSection('registration')">
-                        📝 تسجيل طالب جديد
-                    </button>
-                    <button class="btn btn-secondary" onclick="showSection('followUp')">
-                        🔍 متابعة الطالب
-                    </button>
-                </div>
-            </nav>
+    <!-- Loading -->
+    <div class="loading-state" id="loadingState">
+        <div class="spinner"></div>
+        <p>جارٍ البحث...</p>
+    </div>
+
+    <!-- Empty -->
+    <div class="empty-state" id="emptyState">
+        <i class="fas fa-folder-open"></i>
+        <h3>لا توجد بيانات</h3>
+        <p>تأكد من صحة كود الطالب المكوّن من 6 أرقام وحاول مرة أخرى.</p>
+    </div>
+
+    <!-- Student Card -->
+    <div class="student-card" id="studentCard">
+        <div class="card-header-bar">
+            <div class="card-header-title">
+                <i class="fas fa-id-card"></i>
+                <span>بطاقة الطالب</span>
+            </div>
+            <span class="card-status">
+                <span class="dot"></span>
+                نشط
+            </span>
         </div>
-    </header>
 
-    <!-- المحتوى الرئيسي -->
-    <main class="main-content">
-        <div class="container">
-            <!-- الصفحة الرئيسية -->
-            <section class="section active" id="homeSection">
-                <div class="hero">
-                    <div class="hero-icon">🕌</div>
-                    <h2>مرحبًا بكم في دار الفرقان</h2>
-                    <p>لتعليم القرآن الكريم والحضانة</p>
-                    <p style="font-size: 16px; color: var(--text-light); max-width: 600px; margin: 0 auto 30px;">
-                        نهدف إلى تربية جيل قرآني متميز يجمع بين حفظ القرآن الكريم والأخلاق الفاضلة
-                    </p>
-                    <button class="btn btn-primary" onclick="showSection('registration')">
-                        📝 تسجيل طالب جديد
-                    </button>
-                    <button class="btn btn-outline" onclick="showSection('followUp')">
-                        🔍 متابعة الطالب
-                    </button>
+        <div class="card-body">
+            <!-- Photo -->
+            <div class="photo-section">
+                <div class="photo-frame">
+                    <img id="studentPhoto" src="" alt="صورة الطالب">
+                    <div class="placeholder-icon" id="photoPlaceholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="photo-badge">
+                        <i class="fas fa-check-circle"></i>
+                        موثّق
+                    </span>
                 </div>
-            </section>
+                <p class="photo-caption">
+                    <i class="fas fa-camera"></i>
+                    صورة داخل الفصل
+                </p>
+            </div>
 
-            <!-- صفحة التسجيل -->
-            <section class="section" id="registrationSection">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>📋 استمارة تسجيل طالب جديد</h3>
-                        <p>الرجاء ملء جميع البيانات المطلوبة</p>
+            <!-- Info -->
+            <div class="info-section">
+                <h2 class="student-name" id="studentName">—</h2>
+                <span class="student-code">
+                    <i class="fas fa-hashtag"></i>
+                    <span id="studentCodeDisplay">—</span>
+                </span>
+
+                <div class="info-grid">
+                    <!-- المستوى -->
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">المستوى</div>
+                            <div class="info-value" id="studentLevel">—</div>
+                        </div>
                     </div>
 
-                    <form id="registrationForm" onsubmit="return false;">
-                        <div class="form-group">
-                            <label>
-                                اسم الطالب بالكامل
-                                <span class="required">*</span>
-                            </label>
-                            <input type="text" class="form-control" id="studentName" placeholder="أدخل اسم الطالب الثلاثي" required>
-                            <div class="error-message" id="studentNameError">الرجاء إدخال اسم الطالب</div>
+                    <!-- المرحلة -->
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-layer-group"></i>
                         </div>
+                        <div class="info-content">
+                            <div class="info-label">المرحلة</div>
+                            <div class="info-value" id="studentStage">—</div>
+                        </div>
+                    </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>
-                                    القسم
-                                    <span class="required">*</span>
-                                </label>
-                                <select class="form-control" id="section" required>
-                                    <option value="">اختر القسم</option>
-                                    <option value="القرآن الكريم">القرآن الكريم</option>
-                                    <option value="التحفيظ">التحفيظ</option>
-                                    <option value="الحضانة">الحضانة</option>
-                                </select>
-                                <div class="error-message" id="sectionError">الرجاء اختيار القسم</div>
+                    <!-- المعلم -->
+                    <div class="info-item full-width">
+                        <div class="info-icon">
+                            <i class="fas fa-chalkboard-user"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">المعلم / المعلمة</div>
+                            <div class="info-value" id="studentTeacher">—</div>
+                        </div>
+                    </div>
+
+                    <!-- هاتف المعلم -->
+                    <div class="info-item">
+                        <div class="info-icon gold">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">رقم المعلم</div>
+                            <div class="info-value" id="studentTeacherPhoneWrap">
+                                <a id="studentTeacherPhone" class="phone-link" href="#">—</a>
                             </div>
-
-                            <div class="form-group">
-                                <label>
-                                    الفرع
-                                    <span class="required">*</span>
-                                </label>
-                                <select class="form-control" id="branch" required>
-                                    <option value="">اختر الفرع</option>
-                                    <option value="حى عز الدين بجوار مدرسة أبو بكر الصديق والتأمينات - مشتول السوق شرقية">حى عز الدين بجوار مدرسة أبو بكر الصديق والتأمينات - مشتول السوق شرقية</option>
-                                    <option value="المنير الجديدة - مركز مشتول السوق شرقية">المنير الجديدة - مركز مشتول السوق شرقية</option>
-                                </select>
-                                <div class="error-message" id="branchError">الرجاء اختيار الفرع</div>
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label>
-                                المنطقة / محل الإقامة
-                                <span class="required">*</span>
-                            </label>
-                            <input type="text" class="form-control" id="area" placeholder="مثال: مشتول السوق" required>
-                            <div class="error-message" id="areaError">الرجاء إدخال المنطقة</div>
+                    <!-- التقييم -->
+                    <div class="info-item">
+                        <div class="info-icon gold">
+                            <i class="fas fa-star"></i>
                         </div>
-
-                        <div class="form-group">
-                            <label>
-                                رقم هاتف ولي الأمر / رقم الواتساب
-                                <span class="required">*</span>
-                            </label>
-                            <input type="tel" class="form-control" id="parentPhone" placeholder="01xxxxxxxxx" pattern="[0-9]{11}" required>
-                            <div class="error-message" id="phoneError">الرجاء إدخال رقم هاتف صحيح (11 رقم)</div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>
-                                مكان ركوب الطفل
-                                <span class="required">*</span>
-                            </label>
-                            <input type="text" class="form-control" id="pickupPoint" placeholder="حدد مكان ركوب الطفل" required>
-                            <div class="error-message" id="pickupError">الرجاء تحديد مكان ركوب الطفل</div>
-                        </div>
-
-                        <button type="button" class="btn btn-primary" onclick="generateStudentCode()" style="width: 100%; margin-top: 20px;">
-                            🔐 إنشاء كود الطالب
-                        </button>
-                    </form>
-                </div>
-            </section>
-
-            <!-- شاشة النجاح -->
-            <section class="section" id="successSection">
-                <div class="card">
-                    <div class="success-screen">
-                        <div class="success-icon">✅</div>
-                        <h2 style="color: var(--success-color); font-size: 28px; margin-bottom: 20px;">
-                            تم إنشاء كود الطالب بنجاح
-                        </h2>
-                        <p style="font-size: 18px; color: var(--text-light); margin-bottom: 20px;">
-                            كود الطالب الخاص بك هو:
-                        </p>
-                        <div class="student-code" id="displayCode">------</div>
-                        
-                        <div class="alert alert-warning" style="margin: 30px 0;">
-                            ⚠️ مهم: سيتم فتح واتساب تلقائيًا لإرسال بيانات الطالب. اضغط «إرسال» في واتساب لإتمام التسجيل.
-                        </div>
-                        
-                        <div class="alert alert-info">
-                            💡 احتفظ بالكود جيدًا! ستحتاج إليه لمتابعة بيانات الطالب مستقبلًا.
-                        </div>
-
-                        <div class="success-actions">
-                            <button class="btn btn-outline" onclick="copyCode()">
-                                📋 نسخ الكود
-                            </button>
-                            <button class="btn btn-success" onclick="sendToWhatsApp()">
-                                📱 إعادة إرسال التسجيل عبر واتساب
-                            </button>
-                            <button class="btn btn-secondary" onclick="resetForm()">
-                                🔄 تسجيل طالب آخر
-                            </button>
+                        <div class="info-content">
+                            <div class="info-label">التقييم العام</div>
+                            <div class="info-value" id="studentEval">—</div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- صفحة متابعة الطالب -->
-            <section class="section" id="followUpSection">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>🔍 متابعة الطالب</h3>
-                        <p>أدخل كود الطالب للاطلاع على بياناته</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            كود الطالب
-                            <span class="required">*</span>
-                        </label>
-                        <input type="text" class="form-control" id="followUpCode" placeholder="أدخل الكود المكون من 6 أرقام" maxlength="6" pattern="[0-9]{6}" style="text-align: center; font-size: 24px; letter-spacing: 10px; font-weight: 700;">
-                        <div class="error-message" id="followUpError">الرجاء إدخال كود صحيح مكون من 6 أرقام</div>
-                    </div>
-
-                    <button class="btn btn-primary" onclick="followUpStudent()" style="width: 100%;">
-                        🔍 متابعة
-                    </button>
-
-                    <div class="alert alert-danger" style="margin-top: 30px; text-align: center;">
-                        ⚠️ عذرًا، خدمة متابعة الطالب غير متاحة حاليًا
-                        <br><br>
-                        الخدمة قيد التطوير وستتوفر قريبًا بإذن الله
-                        <br><br>
-                        سيتم الإعلان عن تفعيل الخدمة عبر الصفحة الرسمية للدار
-                        <br><br>
-                        شكرًا لتفهمكم وصبركم
-                    </div>
-                </div>
-            </section>
+            </div>
         </div>
-    </main>
+    </div>
 
-    <!-- الفوتر -->
-    <footer class="footer">
-        <p>© 2024 دار الفرقان لتعليم القرآن الكريم والحضانة - جميع الحقوق محفوظة</p>
-        <p class="developer">Design & Development by Abdul Rahman Adel Al-Muqaddam</p>
-    </footer>
+</main>
 
-    <script>
-        // ============== المتغيرات العامة ==============
-        let generatedCode = '';
-        let studentData = {};
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+    <p>© 2025 دار الفرقان لتعليم القرآن الكريم — جميع الحقوق محفوظة</p>
+    <p class="credit">Design &amp; Development: Youssef, Abdelrahman</p>
+</footer>
 
-        // رقم الواتساب الإجباري للإرسال
-        const WHATSAPP_NUMBER = '201061255635'; // 01061255635
+<script>
+// ==========================================
+// CONFIG
+// ==========================================
+const STUDENTS_JSON_URL = 'students.json';
 
-        // ============== التنقل بين الأقسام ==============
-        function showSection(sectionName) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
+// ==========================================
+// ELEMENTS
+// ==========================================
+const codeInput = document.getElementById('studentCode');
+const searchBtn = document.getElementById('searchBtn');
+const msgError = document.getElementById('msgError');
+const msgErrorText = document.getElementById('msgErrorText');
+const loadingState = document.getElementById('loadingState');
+const emptyState = document.getElementById('emptyState');
+const studentCard = document.getElementById('studentCard');
 
-            const targetSection = document.getElementById(sectionName + 'Section');
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
+const photoEl = document.getElementById('studentPhoto');
+const photoPlaceholder = document.getElementById('photoPlaceholder');
+const nameEl = document.getElementById('studentName');
+const codeDisplayEl = document.getElementById('studentCodeDisplay');
+const levelEl = document.getElementById('studentLevel');
+const stageEl = document.getElementById('studentStage');
+const teacherEl = document.getElementById('studentTeacher');
+const teacherPhoneEl = document.getElementById('studentTeacherPhone');
+const evalEl = document.getElementById('studentEval');
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+// ==========================================
+// CACHE
+// ==========================================
+let studentsCache = null;
 
-        // ============== التحقق من صحة البيانات ==============
-        function validateForm() {
-            let isValid = true;
+// ==========================================
+// HELPERS
+// ==========================================
+function showError(msg) {
+    msgErrorText.textContent = msg;
+    msgError.classList.add('show');
+    hideStates();
+}
 
-            const studentName = document.getElementById('studentName').value.trim();
-            if (!studentName || studentName.length < 3) {
-                showError('studentName', 'studentNameError', 'الرجاء إدخال اسم الطالب الكامل (3 أحرف على الأقل)');
-                isValid = false;
-            } else {
-                hideError('studentName', 'studentNameError');
-            }
+function hideError() {
+    msgError.classList.remove('show');
+}
 
-            const section = document.getElementById('section').value;
-            if (!section) {
-                showError('section', 'sectionError', 'الرجاء اختيار القسم');
-                isValid = false;
-            } else {
-                hideError('section', 'sectionError');
-            }
+function hideStates() {
+    loadingState.classList.remove('show');
+    emptyState.classList.remove('show');
+    studentCard.classList.remove('show');
+}
 
-            const branch = document.getElementById('branch').value;
-            if (!branch) {
-                showError('branch', 'branchError', 'الرجاء اختيار الفرع');
-                isValid = false;
-            } else {
-                hideError('branch', 'branchError');
-            }
+function setEvalClass(evalText) {
+    evalEl.classList.remove('eval-excellent', 'eval-verygood', 'eval-good', 'eval-acceptable');
+    const t = (evalText || '').trim();
 
-            const area = document.getElementById('area').value.trim();
-            if (!area) {
-                showError('area', 'areaError', 'الرجاء إدخال المنطقة');
-                isValid = false;
-            } else {
-                hideError('area', 'areaError');
-            }
+    if (t.includes('ممتاز') && !t.includes('جيد')) {
+        evalEl.classList.add('eval-excellent');
+    } else if (t.includes('جيد جداً') || t.includes('جيد جدا')) {
+        evalEl.classList.add('eval-verygood');
+    } else if (t.includes('جيد')) {
+        evalEl.classList.add('eval-good');
+    } else if (t.includes('مقبول') || t.includes('ضعيف') || t.includes('يحتاج')) {
+        evalEl.classList.add('eval-acceptable');
+    } else {
+        evalEl.classList.add('eval-verygood');
+    }
+}
 
-            const phone = document.getElementById('parentPhone').value.trim();
-            const phoneRegex = /^01[0-9]{9}$/;
-            if (!phoneRegex.test(phone)) {
-                showError('parentPhone', 'phoneError', 'الرجاء إدخال رقم هاتف صحيح (11 رقم يبدأ بـ 01)');
-                isValid = false;
-            } else {
-                hideError('parentPhone', 'phoneError');
-            }
+// ==========================================
+// LOAD STUDENTS
+// ==========================================
+async function loadStudents() {
+    if (studentsCache) return studentsCache;
 
-            const pickupPoint = document.getElementById('pickupPoint').value.trim();
-            if (!pickupPoint) {
-                showError('pickupPoint', 'pickupError', 'الرجاء تحديد مكان ركوب الطفل');
-                isValid = false;
-            } else {
-                hideError('pickupPoint', 'pickupError');
-            }
+    try {
+        const res = await fetch(STUDENTS_JSON_URL, { cache: 'no-store' });
+        if (!res.ok) throw new Error('fetch failed');
+        const data = await res.json();
+        studentsCache = Array.isArray(data) ? data : (data.students || []);
+        return studentsCache;
+    } catch (err) {
+        console.error('خطأ في تحميل students.json:', err);
+        return null;
+    }
+}
 
-            return isValid;
-        }
+// ==========================================
+// DISPLAY STUDENT
+// ==========================================
+function displayStudent(student) {
+    // Name / Code
+    nameEl.textContent = student.name || '—';
+    codeDisplayEl.textContent = student.code || '—';
 
-        function showError(inputId, errorId, message) {
-            const input = document.getElementById(inputId);
-            const error = document.getElementById(errorId);
-            input.classList.add('error');
-            error.textContent = message;
-            error.classList.add('show');
-        }
+    // Level / Stage
+    levelEl.textContent = student.level || '—';
+    stageEl.textContent = student.stage || '—';
 
-        function hideError(inputId, errorId) {
-            const input = document.getElementById(inputId);
-            const error = document.getElementById(errorId);
-            input.classList.remove('error');
-            error.classList.remove('show');
-        }
+    // Teacher
+    teacherEl.textContent = student.teacher || 'غير محدد';
 
-        function generateRandomCode() {
-            let code = '';
-            for (let i = 0; i < 6; i++) {
-                code += Math.floor(Math.random() * 10);
-            }
-            return code;
-        }
+    // Teacher Phone (clickable)
+    if (student.teacherPhone) {
+        teacherPhoneEl.textContent = student.teacherPhone;
+        teacherPhoneEl.href = 'tel:' + String(student.teacherPhone).replace(/\s/g, '');
+    } else {
+        teacherPhoneEl.textContent = 'غير محدد';
+        teacherPhoneEl.href = '#';
+        teacherPhoneEl.removeAttribute('href');
+    }
 
-        function generateStudentCode() {
-            if (!validateForm()) {
-                alert('الرجاء تصحيح الأخطاء في النموذج قبل إنشاء الكود');
-                return;
-            }
+    // Evaluation
+    evalEl.textContent = student.evaluation || '—';
+    setEvalClass(student.evaluation);
 
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            loadingOverlay.classList.add('show');
+    // Photo
+    if (student.photo) {
+        photoEl.style.display = 'block';
+        photoPlaceholder.style.display = 'none';
+        photoEl.onerror = () => {
+            photoEl.style.display = 'none';
+            photoPlaceholder.style.display = 'flex';
+        };
+        photoEl.src = student.photo;
+        photoEl.alt = student.name || 'صورة الطالب';
+    } else {
+        photoEl.style.display = 'none';
+        photoPlaceholder.style.display = 'flex';
+    }
 
-            setTimeout(() => {
-                generatedCode = generateRandomCode();
+    // Show
+    hideStates();
+    studentCard.classList.add('show');
 
-                studentData = {
-                    name: document.getElementById('studentName').value.trim(),
-                    section: document.getElementById('section').value,
-                    branch: document.getElementById('branch').value,
-                    area: document.getElementById('area').value.trim(),
-                    parentPhone: document.getElementById('parentPhone').value.trim(),
-                    pickupPoint: document.getElementById('pickupPoint').value.trim()
-                };
+    setTimeout(() => {
+        studentCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+}
 
-                document.getElementById('displayCode').textContent = generatedCode;
+// ==========================================
+// SEARCH
+// ==========================================
+async function searchStudent() {
+    hideError();
+    hideStates();
 
-                loadingOverlay.classList.remove('show');
+    const raw = codeInput.value.trim();
 
-                showSection('success');
+    if (!raw) {
+        showError('من فضلك أدخل كود الطالب أولاً');
+        codeInput.focus();
+        return;
+    }
 
-                setTimeout(() => {
-                    sendToWhatsApp();
-                }, 1000);
+    if (!/^\d{6}$/.test(raw)) {
+        showError('الكود يجب أن يكون 6 أرقام بالضبط');
+        codeInput.focus();
+        return;
+    }
 
-                console.log('Student Data:', studentData);
-                console.log('Generated Code:', generatedCode);
-            }, 1500);
-        }
+    loadingState.classList.add('show');
+    searchBtn.disabled = true;
 
-        function copyCode() {
-            const code = document.getElementById('displayCode').textContent;
-            
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(code).then(() => {
-                    alert('✅ تم نسخ الكود بنجاح: ' + code);
-                }).catch(() => {
-                    fallbackCopy(code);
-                });
-            } else {
-                fallbackCopy(code);
-            }
-        }
+    const students = await loadStudents();
 
-        function fallbackCopy(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
-            
-            try {
-                document.execCommand('copy');
-                alert('✅ تم نسخ الكود بنجاح: ' + text);
-            } catch (err) {
-                alert('الرجاء نسخ الكود يدويًا: ' + text);
-            }
-            
-            document.body.removeChild(textarea);
-        }
+    await new Promise(r => setTimeout(r, 400));
 
-        function sendToWhatsApp() {
-            const cleanData = {
-                name: cleanText(studentData.name),
-                section: cleanText(studentData.section),
-                branch: cleanText(studentData.branch),
-                area: cleanText(studentData.area),
-                parentPhone: cleanText(studentData.parentPhone),
-                pickupPoint: cleanText(studentData.pickupPoint)
-            };
+    searchBtn.disabled = false;
+    loadingState.classList.remove('show');
 
-            const message = `📋 تسجيل طالب جديد – دار الفرقان\n\n` +
-                `👦 اسم الطالب: ${cleanData.name}\n` +
-                `📚 القسم: ${cleanData.section}\n` +
-                `🏢 الفرع: ${cleanData.branch}\n` +
-                `📍 المنطقة: ${cleanData.area}\n` +
-                `📱 رقم ولي الأمر: ${cleanData.parentPhone}\n` +
-                `🚌 مكان ركوب الطفل: ${cleanData.pickupPoint}\n\n` +
-                `🔐 كود الطالب: ${generatedCode}\n\n` +
-                `يرجى مراجعة البيانات واعتماد تسجيل الطالب.`;
+    if (!students) {
+        showError('تعذّر تحميل بيانات الطلاب. حاول مرة أخرى لاحقاً.');
+        return;
+    }
 
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    const student = students.find(s => String(s.code).trim() === raw);
 
-            window.open(whatsappUrl, '_blank');
+    if (!student) {
+        showError('لا يوجد طالب بهذا الكود. تأكد من الرقم وحاول مرة أخرى.');
+        emptyState.classList.add('show');
+        return;
+    }
 
-            console.log('WhatsApp message prepared:', message);
-        }
+    displayStudent(student);
+}
 
-        function cleanText(text) {
-            if (!text) return '';
-            return text.trim().replace(/[<>]/g, '');
-        }
+// ==========================================
+// EVENTS
+// ==========================================
+searchBtn.addEventListener('click', searchStudent);
 
-        function resetForm() {
-            document.getElementById('registrationForm').reset();
-            
-            const errors = document.querySelectorAll('.error-message');
-            errors.forEach(error => error.classList.remove('show'));
-            
-            const inputs = document.querySelectorAll('.form-control');
-            inputs.forEach(input => input.classList.remove('error'));
+codeInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') searchStudent();
+});
 
-            generatedCode = '';
-            studentData = {};
+codeInput.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
+});
 
-            showSection('registration');
-        }
+window.addEventListener('load', () => {
+    setTimeout(() => codeInput.focus(), 300);
+});
+</script>
 
-        function followUpStudent() {
-            const code = document.getElementById('followUpCode').value.trim();
-            
-            if (!/^[0-9]{6}$/.test(code)) {
-                document.getElementById('followUpCode').classList.add('error');
-                document.getElementById('followUpError').classList.add('show');
-                return;
-            }
-
-            document.getElementById('followUpCode').classList.remove('error');
-            document.getElementById('followUpError').classList.remove('show');
-
-            alert('⚠️ عذرًا، خدمة متابعة الطالب غير متاحة حاليًا\n\nالخدمة قيد التطوير وستتوفر قريبًا بإذن الله\n\nشكرًا لتفهمكم');
-        }
-
-        document.addEventListener('input', function(e) {
-            if (e.target.classList.contains('form-control')) {
-                const inputId = e.target.id;
-                const errorId = inputId + 'Error';
-                const errorElement = document.getElementById(errorId);
-                
-                if (errorElement && errorElement.classList.contains('show')) {
-                    e.target.classList.remove('error');
-                    errorElement.classList.remove('show');
-                }
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
-                e.preventDefault();
-                const form = document.getElementById('registrationForm');
-                const inputs = Array.from(form.querySelectorAll('input, select'));
-                const currentIndex = inputs.indexOf(e.target);
-                
-                if (currentIndex < inputs.length - 1) {
-                    inputs[currentIndex + 1].focus();
-                } else {
-                    generateStudentCode();
-                }
-            }
-        });
-
-        console.log('📖 دار الفرقان لتعليم القرآن الكريم والحضانة');
-        console.log('🏢 نظام تسجيل الطلاب - الإصدار 1.0');
-        console.log('📱 رقم الواتساب للإرسال: 01061255635');
-        console.log('👨‍💻 Design & Development by Abdul Rahman Adel Al-Muqaddam');
-    </script>
 </body>
 </html>

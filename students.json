@@ -1,0 +1,34 @@
+﻿{
+  "students": [
+    {
+      "code": "100001",
+      "name": "أحمد محمود عبد الله",
+      "level": "ممتاز",
+      "stage": "تمهيدي 2",
+      "teacher": "أ. محمد عبد الرحمن",
+      "teacherPhone": "01012345678",
+      "photo": "students/100001.jpg",
+      "evaluation": "ممتاز"
+    },
+    {
+      "code": "100002",
+      "name": "فاطمة علي حسن",
+      "level": "جيد جداً",
+      "stage": "KG1",
+      "teacher": "أ. سارة إبراهيم",
+      "teacherPhone": "01098765432",
+      "photo": "students/100002.jpg",
+      "evaluation": "جيد جداً"
+    },
+    {
+      "code": "100003",
+      "name": "يوسف خالد إبراهيم",
+      "level": "جيد",
+      "stage": "تمهيدي 1",
+      "teacher": "أ. أحمد السيد",
+      "teacherPhone": "01155667788",
+      "photo": "students/100003.jpg",
+      "evaluation": "جيد"
+    }
+  ]
+}
